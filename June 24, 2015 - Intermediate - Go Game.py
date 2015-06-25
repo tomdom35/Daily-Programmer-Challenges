@@ -1,5 +1,5 @@
 def getLines():
-    file = open(r'C:\Users\1020071\Desktop\info.txt','r')
+    file = open('info.txt','r')
     lines = []
     for line in file:
         lines.append(line)
@@ -26,19 +26,57 @@ def inGroup(groups,lineLetter):
     return False
 
 def createGroup(groups, groupSpaces, lines, line, letter, width, height):
-    if(letter<width-1 and lines[line][letter] == lines[line][letter+1] and not(inGroup(groups,(line,letter+1)))):
-        groups[len(groups)-1].append((line,letter+1))
-        createGroup(groups, groupSpaces, lines, line, letter+1, width, height)
-    if(letter>0 and lines[line][letter] == lines[line][letter-1] and not(inGroup(groups,(line,letter-1)))):
-        groups[len(groups)-1].append((line,letter-1))
-        createGroup(groups, groupSpaces, lines, line, letter-1, width, height)
-    if(line<height-1 and lines[line][letter] == lines[line+1][letter] and not(inGroup(groups,(line+1,letter)))):
-        groups[len(groups)-1].append((line+1,letter))
-        createGroup(groups, groupSpaces, lines, line+1, letter, width, height)
-    if(line>0 and lines[line][letter] == lines[line-1][letter] and not(inGroup(groups,(line-1,letter)))):
-        groups[len(groups)-1].append((line-1,letter))
-        createGroup(groups, groupSpaces, lines, line-1, letter, width, height)
+    if(letter<width-1):
+        if (lines[line][letter] == lines[line][letter+1] and not(inGroup(groups,(line,letter+1)))):
+            groups[len(groups)-1].append((line,letter+1))
+            createGroup(groups, groupSpaces, lines, line, letter+1, width, height)
+        elif(lines[line][letter+1] == ' '):
+            groupSpaces[len(groupSpaces)-1].append((line,letter+1))
+            
+    if(letter>0):
+        if(lines[line][letter] == lines[line][letter-1] and not(inGroup(groups,(line,letter-1)))):
+            groups[len(groups)-1].append((line,letter-1))
+            createGroup(groups, groupSpaces, lines, line, letter-1, width, height)
+        elif(lines[line][letter-1] == ' '):
+            groupSpaces[len(groupSpaces)-1].append((line,letter-1))
+            
+    if(line<height-1):
+        if(lines[line][letter] == lines[line+1][letter] and not(inGroup(groups,(line+1,letter)))):
+            groups[len(groups)-1].append((line+1,letter))
+            createGroup(groups, groupSpaces, lines, line+1, letter, width, height)
+        elif(lines[line+1][letter] == ' '):
+            groupSpaces[len(groupSpaces)-1].append((line+1,letter))
+    if(line>0):
+        if(lines[line][letter] == lines[line-1][letter] and not(inGroup(groups,(line-1,letter)))):
+            groups[len(groups)-1].append((line-1,letter))
+            createGroup(groups, groupSpaces, lines, line-1, letter, width, height)
+        elif(lines[line-1][letter] == ' '):
+            groupSpaces[len(groupSpaces)-1].append((line-1,letter))
 
+def removeDuplicates(groups):
+    for group in groups:
+        for item in group:
+            while(group.count(item)>1):
+                group.remove(item)
+
+def combineGroups(groups, groupSpaces):
+    for group in groupSpaces:
+        while(groupSpaces.count(group)>1):
+            tempIndex = groupSpaces.index(group)
+            groupSpaces.remove(group)
+            newIndex = groupSpaces.index(group)
+            tempGroup = groups[tempIndex]
+            groups.remove(tempGroup)
+            groups[newIndex].extend(tempGroup)
+
+def findRemovalPoint(groups, groupSpaces):
+    largestGroup = 0
+    removalPoint = (-1,-1)
+    for index in range(0,len(groups)):
+        if(len(groupSpaces[index]) == 1 and len(groups[index])>largestGroup):
+            removalPoint = (groupSpaces[index][0][1],groupSpaces[index][0][0])
+            largestGroup = len(groups[index])
+    return removalPoint
 
 lines = getLines()
 firstLine = lines[0].split()
@@ -54,7 +92,7 @@ lines.pop(0)
 lines.pop(0)
 print('Width: ',width)
 print('Height: ',height)
-print('Color: ',myColor)
+print('My Color: ',myColor)
 print()
 lines = formatLines(lines,width)
 printBoard(lines)
@@ -67,4 +105,9 @@ for line in range(0,height):
             groups.append([(line,letter)])
             groupSpaces.append([])
             createGroup(groups, groupSpaces, lines, line, letter, width, height)
-print(groups)
+removeDuplicates(groupSpaces)
+combineGroups(groups, groupSpaces)
+removalPoint = findRemovalPoint(groups, groupSpaces)
+if(removalPoint == (-1,-1)):
+    removalPoint = "No constructive move"
+print('Removal Point: ',removalPoint)
