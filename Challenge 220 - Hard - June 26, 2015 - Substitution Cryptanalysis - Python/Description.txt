@@ -1,3 +1,5 @@
+https://www.reddit.com/r/dailyprogrammer/comments/3b668g/20150626_challenge_220_hard_substitution/
+
 (Hard): Substitution Cryptanalysis
 
 A substitution cipher[1] is one where each letter in the alphabet is substituted for another letter. It's like a Caesar shift cipher, but where every letter is ciphered independently. For example, look at the two rows below.
