@@ -36,14 +36,28 @@ int main(){
     }
     int right = 0;
     int down = 0;
+    bool reverse = false;
     for(int i = 0; i<wordCount; i++){
         if(i%2==0){
+            reverse = false;
+            if(arr[i].size()<right){
+                for(int c = 0; c<arr[i].size()/2;c++){
+                    swap(arr[i][c], arr[i][arr[i].size()-c-1]);
+                }
+                right=right-arr[i].size()+1;
+                reverse = true;
+            }
+            else{
+                reverse = false;
+            }
             for(int j = 0; j<right-1; j++){
                 cout<<" ";
             }
             cout<<arr[i];
-            right+=arr[i].size()-1;
             cout<<""<<endl;
+            if(!reverse){
+                right+=arr[i].size()-1;
+            }
         }
         else{
             if(i!=wordCount-1){
