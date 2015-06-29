@@ -1,5 +1,5 @@
 def getLines():
-    file = open('info.txt','r')
+    file = open('input.txt','r')
     lines = []
     for line in file:
         lines.append(line)
