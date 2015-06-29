@@ -41,7 +41,7 @@ def useKey(cipherText, key):
                 cipherText[index] = word
     print('Cipher Text After Key :', cipherText, '\n')
 
-def test(myWord, cipherText, possiblePlainText):
+def checkWordsWithSameLetter(myWord, cipherText, possiblePlainText):
     for letterIndex in range(0,len(myWord)):
         checkList = []
         letter = myWord[letterIndex]
@@ -55,67 +55,20 @@ def test(myWord, cipherText, possiblePlainText):
                     if (wordIndex,letterIndex2) not in checkList:
                         checkList.append((wordIndex,letterIndex2))
         for item in checkList:
-            print(checkList)
-            updateTest(item, checkList, possiblePlainText)
+            updatePlainText(item, checkList, possiblePlainText)
 
-def updateTest(item, checkList, possiblePlainText):
+def updatePlainText(item, checkList, possiblePlainText):
     for element in checkList:
         newList1 = []
         newList2 = []
         if element != item:
             for word1 in possiblePlainText[item[0]]:
                 found = False
-                count=0
                 for word2 in possiblePlainText[element[0]]:
                     if word1[item[1]] == word2[element[1]]:
-                        '''if word1 not in newList1:
-                            newList1.append(word1)
-                            possiblePlainText[item[0]] = newList1
-                        if word2 not in newList2:
-                            newList2.append(word2)
-                            possiblePlainText[element[0]] = newList2'''
                         found = True
-                        count+=1
-                        if count == 100:
-                            print(word1)
-                            print(word2)
                 if not found:
                     possiblePlainText[item[0]].remove(word1)
-
-def checkWordsWithSameLetter(myWord, cipherText, possiblePlainText):
-    for word in cipherText:
-        if word != myWord:
-            for letter in myWord:
-                if letter in word:
-                    index1 = myWord.index(letter)
-                    index2 = word.index(letter)
-                    '''print()
-                    print(letter)
-                    print(myWord)
-                    print(index1)
-                    print(word)
-                    print(index2)'''
-                    updatePlainText(cipherText.index(myWord), cipherText.index(word), index1, index2, possiblePlainText)
-
-def updatePlainText(myIndex, curIndex, index1, index2, possiblePlainText):
-    list1 = []
-    list2 = []
-
-    for word1 in possiblePlainText[myIndex]:
-        for word2 in possiblePlainText[curIndex]:
-            if word1[index1] == word2[index2]:
-                #print(word1)
-                #print(word2)
-                #print()
-                if word1 not in list1:
-                    list1.append(word1)
-                    #print(word1)
-                if word2 not in list2:
-                    list2.append(word2)
-                    #print(word2)
-    possiblePlainText[myIndex] = list1
-    possiblePlainText[curIndex] = list2
-    #print(len(list2))
 
 def updateKey(key, word, cipherText):
     updated = False
@@ -145,20 +98,15 @@ while not done:
     possiblePlainText = []
     for word in cipherText:
         possiblePlainText.append(dictionary.findPossibleWords(word))
-    '''for word in cipherText:
-        #checkWordsWithSameLetter(word, cipherText, possiblePlainText)
-        test(word, cipherText, possiblePlainText)'''
-    #print(possiblePlainText[3])
-    test(cipherText[4], cipherText, possiblePlainText)
-    #print(possiblePlainText[4])
+    for x in range(0,2):
+        for word in cipherText:
+            for x in range(0,len(cipherText)):checkWordsWithSameLetter(word, cipherText, possiblePlainText)
     for index in range(0,len(possiblePlainText)):
         if len(possiblePlainText[index]) == 1:
             keyUpdated = updateKey(key,possiblePlainText[index][0],cipherText[index])
-    print(key)
-    useKey(cipherText, key)
+    if keyUpdated: useKey(cipherText, key)
     complete = decoded(possiblePlainText)
     done = (not(keyUpdated) and not(complete)) or complete
-print("done")
 for words in possiblePlainText:
-    print(len(words))
+    print(len(words),'possibilities for',cipherText[possiblePlainText.index(words)])
             
