@@ -32,15 +32,12 @@ public class Main {
 		    }
 		    
 		    while ((line = reader.readLine()) != null){
-		    	//records.add(line);
 		    }
 		    reader.close();
-		    //return records;
 		}
 		catch (Exception e){
 		    System.err.format("Exception occurred trying to read '%s'.", "input.txt");
 		    e.printStackTrace();
-		    ///return null;
 		}
 
 		long startTime = System.currentTimeMillis();
@@ -74,17 +71,10 @@ public class Main {
 						waitingPassengers.remove(passenger);
 					}
 				}
-				//if(elevator.direction==0){
-					//elevator.move();
-				//}
 			}
 		}
 		
-		for(Passenger passenger : passengers){
-			if(passenger.endFloor != passenger.destinationFloor){
-				System.out.println("Passenger " + passenger.name + " should be on floor" + passenger.endFloor + ", but is on " + passenger.destinationFloor);
-			}
-		}
+		System.out.println("Done");
 	}
 	
 	public static ArrayList<Passenger> sortPassengers(ArrayList<Passenger> waitingPassengers, Elevator elevator){

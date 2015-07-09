@@ -27,7 +27,7 @@ public class Elevator {
 		}
 		inRoutPassengers.add(passenger);
 		System.out.println("\nPick up request from: " + passenger.name + "\n");
-		if(/*direction==0*/destinationFloors.size()==1){
+		if(destinationFloors.size()==1){
 			move();
 		}
 	}
@@ -53,11 +53,6 @@ public class Elevator {
 				TimerTask task = new elevatorTimeTask(this);
 				timer.schedule(task, (long) ((1/speed) * 1000));
 			}
-			/*else{
-				direction = 0;
-				pickUp();
-				dropOff();
-			}*/
 		}
 		else{
 			System.out.println("No current destination");
@@ -80,9 +75,6 @@ public class Elevator {
 				passenger.inTransit = true;
 				full = currentPassengers.size()>=12;
 			}
-			//else{
-				//i++;
-			//}
 		}
 	}
 	
@@ -101,9 +93,6 @@ public class Elevator {
 				}
 				full = currentPassengers.size()>=12;
 			}
-			//else{
-				//i++;
-			//}
 		}
 		move();
 	}
