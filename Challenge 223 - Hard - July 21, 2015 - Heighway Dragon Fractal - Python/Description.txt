@@ -1,0 +1,21 @@
+https://www.reddit.com/r/dailyprogrammer/comments/3dl9wr/20150717_challenge_223_hard_the_heighway_dragon/
+
+Description
+
+Write a program to print out the (x, y) coordinates of each point in the nth iteration of the Heighway dragon fractal[1]  . Start at the origin (0, 0) and take steps of length 1, starting in the positive x direction (1, 0), then turning to the positive y direction (1, 1). Your program should generate 2n + 1 lines of output.
+You can use any resources you want for help coming up with the algorithm, but if you want to start from the very beginning, use only the fact that the nth iteration can be made by folding a strip of paper in half n times, then unfolding it so that each crease is at a right angle[2]  .
+
+Example
+For n = 3, your output should be:
+0 0
+1 0
+1 1
+0 1
+0 2
+-1 2
+-1 1
+-2 1
+-2 2
+
+Plotted image of these points[3]  , made using LibreOffice.
+The sum of the x's here is -4, and the sum of the y's is 10. For n = 12, the sums are -104896 and 52416. To verify that your program is correct, post the sum of x's and y's for n = 16 along with your code.
