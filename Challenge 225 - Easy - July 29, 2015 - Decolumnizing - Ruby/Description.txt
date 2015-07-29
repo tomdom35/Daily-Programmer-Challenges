@@ -1,0 +1,84 @@
+https://www.reddit.com/r/dailyprogrammer/comments/3esrkm/20150727_challenge_225_easyintermediate/
+
+Often, column-style writing will put images and features to the left or right of the body of text, for example:
+
+This is an example piece of text. This is an exam-
+ple piece of text. This is an example piece of
+text. This is an example
+piece of text. This is a +-----------------------+
+sample for a challenge.  |                       |
+Lorum ipsum dolor sit a- |       top class       |
+met and other words. The |        feature        |
+proper word for a layout |                       |
+like this would be type- +-----------------------+
+setting, or so I would
+imagine, but for now let's carry on calling it an
+example piece of text. Hold up - the end of the
+                 paragraph is approaching - notice
++--------------+ the double line break for a para-
+|              | graph.
+|              |
+|   feature    | And so begins the start of the
+|   bonanza    | second paragraph but as you can
+|              | see it's only marginally better
+|              | than the other one so you've not
++--------------+ really gained much - sorry. I am
+                 certainly not a budding author
+as you can see from this example input. Perhaps I
+need to work on my writing skills.
+
+In order to fit into the column format, some words are hyphenated. For the purpose of the challenge, you may assume that any hyphens at the end of a line join a single un-hyphenated word together (for example, the exam- and ple in the above input form the word example and not exam-ple). However, hyphenated words that do not span multiple lines should retain their hyphens. Side features will only appear at the far left or right of the input, and will always be bordered by the +---+ style shown above. They will also never have 'holes' in them, like this:
+
+Paragraphs in the input are separated by double line breaks, like Reddit markdown. Your task today is to extract just the paragraph text from the input, removing the feature-boxes.
+
+Formal Inputs and Outputs
+Input Specification
+
+You'll be given a number N on one line, followed by N further lines of input like the example in the description above.
+
+Output Description
+Output just the paragraph text, de-hyphenating words where appropriate (ie. a line of text ends with a hyphen).
+
+Sample Inputs and Outputs
+
+Example 1
+
+
+This corresponds to the input given in the Description.
+
+Output
+
+This is an example piece of text. This is an example piece of text. This is an example piece of text. This is an example piece of text. This is a sample for a challenge. Lorum ipsum dolor sit amet and other words. The proper word for a layout like this would be typesetting, or so I would imagine, but for now let's carry on calling it an example piece of text. Hold up - the end of the paragraph is approaching - notice the double line break for a paragraph.
+And so begins the start of the second paragraph but as you can see it's only marginally better than the other one so you've not really gained much - sorry. I am certainly not a budding author as you can see from this example input. Perhaps I need to work on my writing skills.
+Example 2
+
+Input
+
+22
++-------------+ One hundred and fifty quadrillion,
+|             | seventy-two trillion, six hundred
+| 150 072 626 | and twenty-six billion, eight hun-
+| 840 312 999 | dred and fourty million, three
+|             | hundred and thirteen thousand sub-
++-------------+ tract one is a rather large prime
+                number which equals one to five if
+calculated modulo two to six respectively.
+
+However, one other rather more in- +-------------+
+teresting number is two hundred    |             |
+and twenty-one quadrillion, eight  | 221 806 434 |
+hundred and six trillion, four     | 537 978 679 |
+hundred and thirty-four billion,   |             |
+five hundred and thirty-seven mil- +-------------+
+million, nine hundred and seven-
+                                ty-eight thousand,
++-----------------------------+ six hundred and
+|                             | seventy nine,
+| Subscribe for more Useless  | which isn't prime
+|      Number Facts(tm)!      | but is the 83rd
++-----------------------------+ Lucas number.
+
+Output
+
+One hundred and fifty quadrillion, seventy-two trillion, six hundred and twenty-six billion, eight hundred and fourty million, three hundred and thirteen thousand subtract one is a rather large prime number which equals one to five if calculated modulo two to six respectively.
+However, one other rather more interesting number is two hundred and twenty-one quadrillion, eight hundred and six trillion, four hundred and thirty-four billion, five hundred and thirty-seven milmillion, nine hundred and seventy-eight thousand, six hundred and seventy nine, which isn't prime but is the 83rd Lucas number.
