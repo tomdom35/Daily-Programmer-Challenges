@@ -1,3 +1,5 @@
+https://www.reddit.com/r/dailyprogrammer/comments/3fmke1/20150803_challenge_226_easy_adding_fractions/
+
 Description
 
 Fractions are the bane of existence for many elementary and middle-schoolers. They're sort-of hard to get your head around (though thinking of them as pizza slices turned out to be very helpful for me), but even worse is that they're so hard to calculate with! Even adding them together is no picknick.
