@@ -1,3 +1,5 @@
+https://www.reddit.com/r/dailyprogrammer/comments/3xye4g/20151223_challenge_246_intermediate_letter_splits/
+
 This problem is a simplified version of Text Segmentation in Natural Language Processing.
 Description
 Given a positive integer, return all the ways that the integer can be represented by letters using the mapping:
